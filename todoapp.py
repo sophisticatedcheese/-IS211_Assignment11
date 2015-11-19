@@ -3,9 +3,7 @@ __author__ = 'T.J November 2015'
 
 from flask import Flask, render_template
 from flask import request, redirect, flash
-import glob
-import re
-import pickle
+import glob, re, pickle
 
 class SaveList(object):
 
