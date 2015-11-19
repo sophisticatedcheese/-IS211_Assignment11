@@ -1,4 +1,4 @@
-__author__ = 'T Jeremiah November 2015'
+__author__ = 'T.J November 2015'
 
 
 from flask import Flask, render_template
