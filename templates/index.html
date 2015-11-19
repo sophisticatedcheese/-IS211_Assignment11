@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>To Do App!!!</title>	
+    	<link href="/static/bootstrap.min.css" rel= "stylesheet" media="screen">
+	</head>
+
+	<body>
+		<div class="container">
+
+			<h2> To Do List!!</h2>
+			<table class="table">
+				
+				<thead>
+			      	<tr>
+			        	<th>Item</th>
+			        	<th>Email</th>
+			        	<th>Priority</th>
+			        	<th>Delete Item?</th>
+			      	</tr>
+			    </thead>
+
+
+				{% for item in to_do %}		<!-- inserts new row in table -->
+					{% if item[2] == 'high'%}
+						<tr class="danger">
+					{% elif item[2] == 'medium' %}
+						<tr class="warning">
+					{% else %}
+						<tr class="info">
+					{% endif %}			
+
+						<td> <p> {{ item[0] }} </p> </td>
+						<td> <p> {{ item[1] }} </p> </td>
+						<td> <p> {{ item[2] }} </p> </td>
+						<td><form action="/delete" method="post">
+								<input type="hidden" value= "{{ item[3] }}" name="row_id">
+								<input type="submit" value="Delete">	
+							</form>
+						</td>	
+					</tr>
+				{% endfor %}
+			</table>	
+		
+			<form action="/submit" method="post">
+				<input type="text" name="task" value="Add task">
+				<input type="text" name="email" value="email@email.com">
+				<select name="priority">
+					  <option value="low">Low</option>
+					  <option value="medium">Medium</option>
+					  <option value="high">High</option>
+				</select>
+				<input type="submit" value="Add to do item">	
+			</form>
+
+			<br>
+
+			<form action="/clear" method="post">
+				<input type="submit" value="Clear">
+			</form>
+			
+			{% for message in get_flashed_messages() %}	
+				{{ message }}
+			{% endfor %}
+
+		</div>
+	</body>
+</html>
