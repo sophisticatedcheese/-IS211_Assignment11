@@ -54,7 +54,7 @@ def submit():
         TO_DO.append((task, email, priority, row_id))       # match email pattern
         save_list.save(TO_DO)
     else:
-        flash('Invalid email address... Please try again')
+        flash('Invalid email address')
 
     return redirect('/')
 
